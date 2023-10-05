@@ -12,7 +12,7 @@ function getRequest() {
 
     apiRequest.onreadystatechange = () => {
       if (apiRequest.readyState === 4) {
-        if (apiRequest.status === 201) {
+        if (apiRequest.status === 200) {
           resolve(JSON.parse(apiRequest.response));
         } else {
           reject(JSON.parse(apiRequest.response));
@@ -28,7 +28,7 @@ async function getNames() {
   const response = await getRequest();
   //populating an array with only the person's name and email address
   const contactsList = [];
-  for (let i = 0; i < response.length(); i++) {
+  for (let i = 0; i < response.length; i++) {
     const contact = {
       name: response[i].name,
       email: response[i].email,
@@ -43,8 +43,8 @@ async function getNames() {
     const cleanInputValue = nameInput.value.toLowerCase();
 
     // Filtering the list according to what user has typed
-    filteredList = contactsList.name.filter((name) =>
-      name.toLowerCase().includes(cleanInputValue)
+    filteredList = contactsList.filter((contact) =>
+      contact.name.toLowerCase().includes(cleanInputValue)
     );
 
     filteredList.forEach((contact) => {
@@ -65,3 +65,6 @@ async function getNames() {
     });
   });
 }
+
+// Calling the getNames() function to launch the HTTP Get request and start the filtering process on the user input
+getNames();
