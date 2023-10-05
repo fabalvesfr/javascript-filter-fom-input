@@ -8,10 +8,19 @@
   <body>
     <form action="#" method="#">
       <div class="form-group">
-        <label for="name-input">Recherche :</label><br />
-        <input type="text" id="name-input" />
+        <label for="name-input" style="font-weight: bold; font-size: 1.4em"
+          >Recherche :</label
+        ><br /><br />
+        <input
+          type="text"
+          id="name-input"
+          placeholder="Type name here"
+          pattern="[A-Za-z\s-]+"
+        />
       </div>
     </form>
-    <div class="filtered-names"></div>
+    <div id="filtered-names"></div>
+
+    <script src="/index.js"></script>
   </body>
 </html>
